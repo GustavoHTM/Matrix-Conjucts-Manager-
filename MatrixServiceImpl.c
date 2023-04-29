@@ -61,7 +61,6 @@ void unionXIntersection(bool verifier, struct MatrixAttributes *obj)
   int vector[length];
 
   int count = 0;
-  bool aux = false;
 
   for (int i = 0; i < length; i++)
   {
@@ -69,7 +68,8 @@ void unionXIntersection(bool verifier, struct MatrixAttributes *obj)
       vector[i] = vector1[i];
     else
     {
-      for (int j = 0; j < i; j++)
+      bool aux = false;
+      for (int j = 0; j < i - count; j++)
       {
         if (vector[j] == vector2[i - length1])
         {
@@ -79,8 +79,8 @@ void unionXIntersection(bool verifier, struct MatrixAttributes *obj)
           break;
         }
       }
-      if (aux)
-        vector[i - count] = vector2[i];
+      if (!aux)
+        vector[i - count] = vector2[i - length1];
     }
   }
 
@@ -89,6 +89,7 @@ void unionXIntersection(bool verifier, struct MatrixAttributes *obj)
     if (length - count > COLUMNS)
     {
       printf("\n\nOs dois conjuntos juntos ultrapassam o limite de espacos, tente novamente...");
+      obj->numberOfRowsUsed--;
       Sleep(3000);
       return;
     }
@@ -97,6 +98,7 @@ void unionXIntersection(bool verifier, struct MatrixAttributes *obj)
     {
       obj->matrix[numberOfRows][i] = vector[i];
     }
+    obj->numberOfColumnsUsed[numberOfRows] = length - count;
   }
   else
   {
@@ -104,6 +106,7 @@ void unionXIntersection(bool verifier, struct MatrixAttributes *obj)
     {
       obj->matrix[numberOfRows][i] = vector[length - i - 1];
     }
+    obj->numberOfColumnsUsed[numberOfRows] = count;
   }
 }
 
