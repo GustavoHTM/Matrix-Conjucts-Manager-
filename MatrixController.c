@@ -1,13 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <locale.h>
 #include <math.h>
 #include <Windows.h>
 #include <stdbool.h>
 #include "MatrixService.h"
-
-#define ROWS 8
-#define COLUMNS 10
 
 int main()
 {
