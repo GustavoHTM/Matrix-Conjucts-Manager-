@@ -11,7 +11,7 @@
 
 int main()
 {
-  void (*funcoes[])() = {invalid, option1, insertValues, removeRow, option4, option5, printRow, printMatrix, searchValue};
+  void (*functions[])() = {invalid, option1, insertValues, removeRow, option4, option5, printRow, printMatrix, searchValue};
 
   struct MatrixAttributes objMatrix;
   memset(objMatrix.matrix, 0, sizeof objMatrix.matrix);
@@ -39,11 +39,11 @@ int main()
 
     if (option < 1 || option > 9)
     {
-      (*funcoes[0])();
+      (*functions[0])();
     }
     else if (option < 9)
     {
-      (*funcoes[option])(&objMatrix);
+      (*functions[option])(&objMatrix);
     }
 
   } while (option != 9);
